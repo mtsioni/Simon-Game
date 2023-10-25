@@ -1,4 +1,4 @@
-# Simon-Game
+# Simon-Game™ <em>-Watch, Remember, Repeat!-</em>
 This is a game that is modeled off the famous game Simon. <br>
 
 So the way that it works is that you can press any key to start and it will show you a tile that you have to click on. <br>

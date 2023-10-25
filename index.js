@@ -8,7 +8,13 @@ function nextSequence() {
     var randomNumber = Math.floor(Math.random() * 4);
     var randomChosenColour = buttonColours[randomNumber]; 
     gamePattern.push(randomChosenColour);
+
+    $("#"+randomChosenColour).fadeIn(160).fadeOut(160).fadeIn(160);    //Animating a flash to the choosen button.
+    $("#"+randomChosenColour).click(function(){
+        var audio = new Audio("./sounds/" + randomChosenColour + ".mp3");     //Playing the sound for the button colour selected.
+        audio.play();
+    });
 };
 
-
-nextSequence(); // The function does not need a return statement, since it pushes the data in the array.
+// The function does not need a return statement, since it pushes the data in the array.
+nextSequence(); 

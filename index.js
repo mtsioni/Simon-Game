@@ -8,6 +8,7 @@ var level = 0;
 
 // -- Game Launch Mode. --//
 $(document).keydown(function () {
+    $(".btn").show();
     if (!gameStarted){
         $("#level-title").text("Level " + level + " 🤖");
         nextSequence();
@@ -32,16 +33,22 @@ $(".btn").on("click", function () {
 // -- Right or Wrong Answer Check Function -- //
 function checkAnswer(currentLevel) {
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]){
-
-        console.log("success");
-
         if(userClickedPattern.length === gamePattern.length){
             setTimeout(function () {
                 nextSequence();
             }, 1000);
         }
     } else {
-        console.log("fail");
+        playSound("wrong");
+        $("body").addClass("game-over");
+        $("#level-title").html("<center>Game Over 💀 <br><br> Press Any Key to Restart</center>");
+
+        setTimeout(function () {
+            $("body").removeClass("game-over");
+            $(".btn").hide();
+        },600);
+
+        startOver();        
     }
 }
 
@@ -75,4 +82,11 @@ function animatePress(currentColor) {
     setTimeout(function () {
       $("#" + currentColor).removeClass("pressed");
     }, 100);
+}
+
+// -- Restart the Game Mode --//
+function startOver() {
+    level = 0;
+    gamePattern = [];
+    gameStarted = false;
 }

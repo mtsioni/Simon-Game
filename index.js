@@ -2,7 +2,7 @@
 
 var gamePattern = [];
 var buttonColours = ["red", "blue", "green", "yellow"];
-
+var userClickedPattern = [];
 
 function nextSequence() {
     var randomNumber = Math.floor(Math.random() * 4);
@@ -16,5 +16,10 @@ function nextSequence() {
     });
 };
 
-// The function does not need a return statement, since it pushes the data in the array.
-nextSequence(); 
+nextSequence();   // The function does not need a return statement, since it pushes the data in the array.
+
+
+$(".btn").on("click", function () {
+    var userChosenColour = this.id;
+    userClickedPattern.push(userChosenColour);
+});

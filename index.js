@@ -3,6 +3,17 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
 
+var gameStarted = false;
+var level = 0;
+
+$(document).keydown(function (event) {
+    if (!gameStarted){
+        $("#level-title").text("Level " + level + " 🤖");
+        nextSequence();
+        gameStarted = true;
+    }
+});
+
 
 // -- Check which button is pressed by the user. -- //
 $(".btn").on("click", function () {
@@ -17,6 +28,9 @@ $(".btn").on("click", function () {
 
 // -- This is the sequence that game itself creates when you enter the web page. Plus, flashing the selected button & playing the corresponding sound. -- //
 function nextSequence() {
+    level++;
+    $("#level-title").text("Level " + level + " 🤖");
+
     var randomNumber = Math.floor(Math.random() * 4);
     var randomChosenColour = buttonColours[randomNumber]; 
     gamePattern.push(randomChosenColour);
